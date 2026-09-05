@@ -16,6 +16,7 @@ bool TESTING = true;
 competition Competition;
 
 // define your global instances of motors and other devices here
+controller Controller = controller(primary);
 Robot robot;
 
 // Include example functions or add your own functions here
@@ -111,6 +112,10 @@ void autonomous(void) {
 
 void usercontrol(void) {
   // User control code here, inside the loop
+
+  // Deadband prevents the robot from drifting if the joysticks don't return perfectly to 0
+  int deadband = 5;
+
   while (1) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
@@ -120,6 +125,23 @@ void usercontrol(void) {
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
     // ........................................................................
+
+    // Basic split arcade control
+    // Feel free to add/modify
+    int forwardSpeed = Controller.Axis2.value();
+    int turnSpeed = Controller.Axis4.value();
+    // Check if joystick movement is outside the deadband threshold
+    if (abs(forwardSpeed) < deadband) {
+      forwardSpeed = 0;
+    }
+    if (abs(turnSpeed) < deadband) {
+      turnSpeed = 0;
+    }
+
+    // Calculate final left and right speed and drive
+    int leftSpeed  = forwardSpeed + turnSpeed;
+    int rightSpeed = forwardSpeed - turnSpeed;
+    robot.drive(leftSpeed, rightSpeed);
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
