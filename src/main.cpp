@@ -164,4 +164,9 @@ int main() {
   if (TESTING) {
     autonomous();
   }
+
+  while(1) {
+    // Allow other tasks to run
+    this_thread::sleep_for(10);
+  }
 }
