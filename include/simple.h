@@ -13,5 +13,6 @@ brain Brain;
 #include "controller.h"
 #include "params.h"
 #include "robot.h"
+Robot robot;
 
 #endif

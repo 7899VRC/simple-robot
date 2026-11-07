@@ -547,7 +547,7 @@ class Robot : public RobotParams {
     // Drive to an absolute target with a turn, straight, and turn
     void driveTo(float x, float y, float deg) {
       // Calculate angle from current angle to target pose
-      float firstAngle = toDegrees(atan2(y - this->currentY, x - this->currentX)) - this->currentDeg;
+      float firstAngle = normalizeAngle(toDegrees(atan2(y - this->currentY, x - this->currentX)) - this->currentDeg);
       pidTurn(firstAngle);
 
       // Calculate distance from current pose to target pose

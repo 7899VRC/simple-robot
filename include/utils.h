@@ -26,7 +26,7 @@ inline float normalizeAngle(float degrees) {
 }
 
 
-float clamp(float value, float low, float high) {
+inline float clamp(float value, float low, float high) {
   return fmax(low, fmin(value, high));
 }
 

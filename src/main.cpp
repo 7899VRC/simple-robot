@@ -17,7 +17,6 @@ competition Competition;
 
 // define your global instances of motors and other devices here
 controller Controller = controller(primary);
-Robot robot;
 
 // Include example functions or add your own functions here
 #include "examples.h"
