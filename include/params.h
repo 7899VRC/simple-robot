@@ -6,14 +6,14 @@ class RobotParams {
   public:
     // Assign hardware interfaces for the robot
     std::vector<motor> LEFT_MOTORS = {
-      motor(PORT12, ratio18_1, false),
+      motor(PORT9, ratio18_1, false),
     };
 
     std::vector<motor> RIGHT_MOTORS = {
-      motor(PORT19, ratio18_1, true),
+      motor(PORT10, ratio18_1, true),
     };
 
-    inertial IMU = inertial(PORT11);
+    inertial IMU = inertial(PORT8);
     distance FRONT_DISTANCE = distance(PORT18);
 
     float WHEEL_DIAMETER = 2.75; // Diameter of wheels

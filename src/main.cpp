@@ -147,21 +147,28 @@ void usercontrol(void) {
   }
 }
 
+void fake_usercontrol() {
+  while(1) {wait(0.05, sec);}
+}
+
 //
 // Main will set up the competition functions and callbacks.
 //
 int main() {
   std::cout << "-------------------- Starting Program --------------------" << std::endl;
 
-  // Set up callbacks for autonomous and driver control periods.
-  Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
-
-  // Run the pre-autonomous function.
-  pre_auton();
-
   if (TESTING) {
+    Competition.autonomous(autonomous);
+    Competition.drivercontrol(fake_usercontrol);
+    pre_auton();
     autonomous();
+  }
+  else {
+    // Set up callbacks for autonomous and driver control periods.
+    Competition.autonomous(autonomous);
+    Competition.drivercontrol(usercontrol);
+    // Run the pre-autonomous function.
+    pre_auton();
   }
 
   while(1) {
