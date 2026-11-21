@@ -158,6 +158,7 @@ int main() {
   std::cout << "-------------------- Starting Program --------------------" << std::endl;
 
   if (TESTING) {
+    // Run autonomous directly when testing
     Competition.autonomous(autonomous);
     Competition.drivercontrol(fake_usercontrol);
     pre_auton();
